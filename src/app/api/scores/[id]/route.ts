@@ -9,8 +9,9 @@ const supabaseAdmin = createAdmin(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
@@ -18,11 +19,10 @@ export async function DELETE(
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  // Make sure the score belongs to this user
   const { data: existing } = await supabaseAdmin
     .from('scores')
     .select('user_id')
-    .eq('id', params.id)
+    .eq('id', id)
     .single()
 
   if (!existing || existing.user_id !== user.id) {
@@ -32,9 +32,8 @@ export async function DELETE(
   const { error } = await supabaseAdmin
     .from('scores')
     .delete()
-    .eq('id', params.id)
+    .eq('id', id)
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-
   return NextResponse.json({ success: true })
 }
