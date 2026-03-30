@@ -22,14 +22,12 @@ export default function HomePage() {
         </h1>
         <p style={styles.heroSub}>
           Enter your scores. Join the monthly draw. Support a charity you love.
-          <br />Every subscription makes an impact.
+          Every subscription makes an impact.
         </p>
         <div style={styles.heroBtns}>
           <Link href="/signup" style={styles.btnPrimary}>Start playing →</Link>
           <Link href="#how" style={styles.btnGhost}>How it works</Link>
         </div>
-
-        {/* Stats row */}
         <div style={styles.statsRow}>
           {[
             { val: '₹40,000+', label: 'Prize pool this month' },
@@ -63,7 +61,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Prize pool section */}
+      {/* Prize pool */}
       <section style={styles.sectionDark}>
         <p style={styles.sectionTag}>Prize structure</p>
         <h2 style={styles.sectionTitle}>Every draw, three ways to win</h2>
@@ -85,7 +83,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Charity section */}
+      {/* Charity */}
       <section style={styles.section}>
         <p style={styles.sectionTag}>Charity</p>
         <h2 style={styles.sectionTitle}>You choose where your money goes</h2>
@@ -108,11 +106,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA section */}
+      {/* CTA */}
       <section style={styles.ctaSection}>
         <h2 style={styles.ctaTitle}>Ready to play with purpose?</h2>
         <p style={styles.ctaSub}>Join today. Your first draw entry is waiting.</p>
-        <Link href="/signup" style={styles.btnPrimary}>Create your account →</Link>
+        <Link href="/signup" style={styles.ctaBtn}>Create your account →</Link>
       </section>
 
       {/* Footer */}
@@ -131,7 +129,6 @@ export default function HomePage() {
 const styles: Record<string, React.CSSProperties> = {
   page: { background: '#0a0a0a', minHeight: '100vh', color: '#fff', fontFamily: 'sans-serif' },
 
-  // Nav
   nav: {
     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
     padding: '1.25rem 2rem', borderBottom: '1px solid #1a1a1a',
@@ -146,11 +143,9 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: '8px', textDecoration: 'none',
   },
 
-  // Hero
   hero: {
     maxWidth: '800px', margin: '0 auto',
-    padding: '6rem 2rem 4rem',
-    textAlign: 'center',
+    padding: '6rem 2rem 4rem', textAlign: 'center',
   },
   heroBadge: {
     display: 'inline-block',
@@ -158,22 +153,32 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: '20px', padding: '6px 16px',
     fontSize: '13px', color: '#888', marginBottom: '2rem',
   },
-  heroTitle: { fontSize: 'clamp(40px, 7vw, 72px)', fontWeight: 800, lineHeight: 1.1, margin: '0 0 1.5rem' },
+  heroTitle: {
+    fontSize: 'clamp(40px, 7vw, 72px)', fontWeight: 800,
+    lineHeight: 1.1, margin: '0 0 1.5rem',
+  },
   heroGreen: { color: '#22c55e' },
   heroSub: { fontSize: '18px', color: '#888', lineHeight: 1.7, margin: '0 0 2.5rem' },
-  heroBtns: { display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '4rem' },
+  heroBtns: {
+    display: 'flex', gap: '12px', justifyContent: 'center',
+    flexWrap: 'wrap' as const, marginBottom: '4rem',
+  },
   btnPrimary: {
     background: '#22c55e', color: '#000',
     padding: '14px 28px', borderRadius: '10px',
     fontSize: '16px', fontWeight: 700, textDecoration: 'none',
+    display: 'inline-block', textAlign: 'center' as const,
   },
   btnGhost: {
     background: 'transparent', color: '#fff',
     padding: '14px 28px', borderRadius: '10px',
     fontSize: '16px', fontWeight: 600, textDecoration: 'none',
-    border: '1px solid #333',
+    border: '1px solid #333', display: 'inline-block',
   },
-  statsRow: { display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' },
+  statsRow: {
+    display: 'flex', gap: '16px',
+    justifyContent: 'center', flexWrap: 'wrap' as const,
+  },
   statBox: {
     background: '#111', border: '1px solid #1e1e1e',
     borderRadius: '12px', padding: '1.25rem 2rem', textAlign: 'center',
@@ -181,51 +186,82 @@ const styles: Record<string, React.CSSProperties> = {
   statVal: { fontSize: '24px', fontWeight: 700, color: '#22c55e', marginBottom: '4px' },
   statLabel: { fontSize: '13px', color: '#666' },
 
-  // Sections
-  section: { maxWidth: '1000px', margin: '0 auto', padding: '5rem 2rem', textAlign: 'center' },
-  sectionDark: {
-    background: '#0d0d0d', padding: '5rem 2rem', textAlign: 'center',
+  section: {
+    maxWidth: '1000px', margin: '0 auto',
+    padding: '5rem 2rem', textAlign: 'center',
   },
-  sectionTag: { fontSize: '13px', color: '#22c55e', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 12px' },
+  sectionDark: { background: '#0d0d0d', padding: '5rem 2rem', textAlign: 'center' },
+  sectionTag: {
+    fontSize: '13px', color: '#22c55e', fontWeight: 600,
+    textTransform: 'uppercase' as const, letterSpacing: '0.1em', margin: '0 0 12px',
+  },
   sectionTitle: { fontSize: 'clamp(24px, 4vw, 40px)', fontWeight: 700, margin: '0 0 16px' },
-  sectionSub: { fontSize: '16px', color: '#888', lineHeight: 1.7, maxWidth: '600px', margin: '0 auto 3rem' },
+  sectionSub: {
+    fontSize: '16px', color: '#888', lineHeight: 1.7,
+    maxWidth: '600px', margin: '0 auto 3rem',
+  },
 
-  // Steps
-  stepsGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', marginTop: '3rem' },
-  stepCard: { background: '#111', border: '1px solid #1e1e1e', borderRadius: '16px', padding: '2rem', textAlign: 'left' },
+  stepsGrid: {
+    display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+    gap: '20px', marginTop: '3rem',
+  },
+  stepCard: {
+    background: '#111', border: '1px solid #1e1e1e',
+    borderRadius: '16px', padding: '2rem', textAlign: 'left' as const,
+  },
   stepNum: { fontSize: '32px', fontWeight: 800, color: '#22c55e', marginBottom: '1rem' },
   stepTitle: { fontSize: '18px', fontWeight: 700, margin: '0 0 10px' },
   stepDesc: { fontSize: '14px', color: '#888', lineHeight: 1.7, margin: 0 },
 
-  // Prizes
-  prizeGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', marginTop: '3rem', maxWidth: '800px', margin: '3rem auto 0' },
-  prizeCard: { background: '#111', border: '1px solid #1e1e1e', borderRadius: '16px', padding: '2rem', textAlign: 'center' },
+  prizeGrid: {
+    display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+    gap: '20px', maxWidth: '800px', margin: '3rem auto 0',
+  },
+  prizeCard: {
+    background: '#111', border: '1px solid #1e1e1e',
+    borderRadius: '16px', padding: '2rem', textAlign: 'center',
+  },
   prizeShare: { fontSize: '40px', fontWeight: 800, color: '#22c55e', marginBottom: '8px' },
   prizeLabel: { fontSize: '16px', fontWeight: 700, marginBottom: '6px' },
   prizeMatch: { fontSize: '13px', color: '#666', marginBottom: '12px' },
-  rolloverBadge: { background: '#1a2a1a', border: '1px solid #2a3a2a', borderRadius: '6px', padding: '4px 10px', fontSize: '12px', color: '#4ade80', display: 'inline-block' },
+  rolloverBadge: {
+    background: '#1a2a1a', border: '1px solid #2a3a2a',
+    borderRadius: '6px', padding: '4px 10px',
+    fontSize: '12px', color: '#4ade80', display: 'inline-block',
+  },
 
-  // Charity
-  charityCards: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginTop: '2rem' },
-  charityCard: { background: '#111', border: '1px solid #1e1e1e', borderRadius: '16px', padding: '1.5rem', textAlign: 'center' },
+  charityCards: {
+    display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+    gap: '16px', marginTop: '2rem',
+  },
+  charityCard: {
+    background: '#111', border: '1px solid #1e1e1e',
+    borderRadius: '16px', padding: '1.5rem', textAlign: 'center',
+  },
   charityIcon: { fontSize: '28px', marginBottom: '12px' },
   charityName: { fontSize: '15px', fontWeight: 600, marginBottom: '6px' },
   charityDesc: { fontSize: '13px', color: '#666' },
 
-  // CTA
   ctaSection: {
     background: '#0f1f0f', border: '1px solid #1a2a1a',
     margin: '2rem', borderRadius: '20px',
     padding: '5rem 2rem', textAlign: 'center',
+    display: 'flex', flexDirection: 'column' as const,
+    alignItems: 'center',
   },
   ctaTitle: { fontSize: 'clamp(28px, 5vw, 48px)', fontWeight: 800, margin: '0 0 16px' },
   ctaSub: { fontSize: '16px', color: '#888', margin: '0 0 2rem' },
+  ctaBtn: {
+    background: '#22c55e', color: '#000',
+    padding: '16px 36px', borderRadius: '10px',
+    fontSize: '16px', fontWeight: 700, textDecoration: 'none',
+    display: 'inline-block', textAlign: 'center' as const,
+  },
 
-  // Footer
   footer: {
     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
     padding: '1.5rem 2rem', borderTop: '1px solid #1a1a1a',
-    fontSize: '13px', color: '#555', flexWrap: 'wrap', gap: '12px',
+    fontSize: '13px', color: '#555', flexWrap: 'wrap' as const, gap: '12px',
   },
   footerLinks: { display: 'flex', gap: '16px' },
   footerLink: { color: '#555', textDecoration: 'none' },
